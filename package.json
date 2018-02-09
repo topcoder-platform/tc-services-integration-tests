@@ -1,0 +1,41 @@
+{
+  "name": "tc-backend-testsuite",
+  "version": "1.0.0",
+  "description": "Test suites for Topcoder backend services",
+  "main": "tester.js",
+  "scripts": {
+    "prestart": "rimraf mochawesome-report && rimraf test_results.zip",
+    "start": "node tester.js",
+    "poststart": "node mailer.js",
+    "test": "mocha tests/ --exit",
+    "lint": "eslint *.js tests/*.js",
+    "lint:fix": "eslint *.js tests/*.js --fix"
+  },
+  "engines": {
+    "node": "8.x.x",
+    "npm": "5.x.x"
+  },
+  "dependencies": {
+    "archiver": "^2.1.1",
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "config": "^1.29.2",
+    "fs": "0.0.1-security",
+    "googleapis": "^25.0.0",
+    "jsonfile": "^4.0.0",
+    "mocha": "^4.1.0",
+    "mochawesome": "^3.0.2",
+    "nodemailer": "^4.4.2",
+    "path": "^0.12.7",
+    "rimraf": "^2.6.2",
+    "winston": "^2.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-mocha": "^4.11.0",
+    "eslint-plugin-react": "^7.5.1"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "tests": [
+    {
+      "service_name": "tc-message-service",
+      "service_base_url": "http://local.topcoder-dev.com:8001",
+      "read_only_test" : "Y"
+    }
+  ]
+}
