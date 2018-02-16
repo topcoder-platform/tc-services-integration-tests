@@ -99,12 +99,5 @@ npm run testConfig.json
 After executing the tests, Tests results will be emailed to the given emails.
 
 **Note**
-1. If you are running tests continuously, Most probably Discourse will start responding with 429 for valid requests, so it may cause failure of tests
 
-2. If you get 429 for `POST /v4/topics`, `DELETE /v4/topics` will also fail since I am creating a topic before it could be deleted.
-
-3. Sometimes `POST /v4/topics/image` is getting timed out for no reason.
-
-4. **If you are executing read only tests, Make sure to configure the variables `topicId, updPostId` with valid topic ID and post ID values by executing Postman scripts in `tc-message-service` manually. Initially when I started `tc-message-service` the ids which I have given in test script were present in discourse by default. You could recheck if it exists already or recreate with Postman collection provided there.**
-
-5. Sometimes files being uploaded to Google drive is getting corrupted, unsure what is the cause.
+1. **If you are executing read only tests, Make sure to configure the variables `topicId, updPostId` with valid topic ID and post ID values by executing Postman scripts in `tc-message-service` manually. Initially when I started `tc-message-service` the ids which I have given in test script were present in discourse by default. You could recheck if it exists already or recreate with Postman collection provided there.**
