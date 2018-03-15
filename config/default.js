@@ -11,7 +11,7 @@ module.exports = {
   MODIFIED_TITLE: 'Modified discussion for a topic', // Sample title to be used for a updating a topic
   MODIFIED_BODY: 'Modified sample discussion body for a topic', // Sample body to be used for a updating a topic body
   USER_TOKEN: process.env.USER_TOKEN, // Any Topcoder user valid JWT token
-  TO_EMAILS: ['kranitsasthomas@gmail.com'],
+  TO_EMAILS: ['devops+tc-dev@topcoder.com'],
   MAIL_SUBJECT: 'Test results',
   MAIL_BODY: '<p>Latest test results available here </p>',
   SMPT_CONFIG: {
