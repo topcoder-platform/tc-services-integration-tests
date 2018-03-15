@@ -20,6 +20,5 @@ function randomStr(len, chars) {
 }
 
 module.exports = {
-  randomStr,
+  randomStr
 };
-

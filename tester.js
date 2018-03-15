@@ -13,7 +13,7 @@ if (process.argv.length !== 3 || path.extname(process.argv[2]).toLowerCase() !==
 }
 
 const mocha = new Mocha({
-  reporter: 'mochawesome',
+  reporter: 'mochawesome'
 });
 
 const testConfig = jsonfile.readFileSync(process.argv[2]);

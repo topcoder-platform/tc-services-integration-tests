@@ -17,7 +17,7 @@ const jwtClient = new google.auth.JWT(
   null,
   key.private_key,
   ['https://www.googleapis.com/auth/drive'], // an array of auth scopes
-  null,
+  null
 );
 const fileOutput = fs.createWriteStream('test_results.zip');
 const archive = archiver('zip', { zlib: { level: 9 } });
@@ -32,14 +32,8 @@ archive.on('error', (err) => {
 archive.finalize();
 winston.info('Test results zipped');
 
-// Gmail transport for sending results
-const trans = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_PASSWORD,
-  },
-});
+// SMTP/Gmail transport for sending results
+const trans = nodemailer.createTransport(config.PREFER_GMAIL ? config.GMAIL : config.SMPT_CONFIG);
 
 jwtClient.authorize((err, tokens) => { // eslint-disable-line no-unused-vars
   if (err) {
@@ -52,12 +46,12 @@ jwtClient.authorize((err, tokens) => { // eslint-disable-line no-unused-vars
     mimeType: 'application/zip'
   };
   const media = {
-    body: fs.createReadStream(path.join(__dirname, 'test_results.zip')),
+    body: fs.createReadStream(path.join(__dirname, 'test_results.zip'))
   };
   drive.files.create({
     resource: fileMetadata,
     media,
-    auth: jwtClient,
+    auth: jwtClient
   }, (fileErr, file) => {
     if (fileErr) {
       // Handle error
@@ -68,12 +62,12 @@ jwtClient.authorize((err, tokens) => { // eslint-disable-line no-unused-vars
       const body = {
         value: 'default',
         type: 'anyone',
-        role: 'reader',
+        role: 'reader'
       };
       drive.permissions.create({
         fileId: fileURL,
         resource: body,
-        auth: jwtClient,
+        auth: jwtClient
       }, (error, res, resbody) => { // eslint-disable-line no-unused-vars
         if (error) {
           winston.error(error);
@@ -84,7 +78,7 @@ jwtClient.authorize((err, tokens) => { // eslint-disable-line no-unused-vars
         from: config.FROM_EMAIL,
         to: config.TO_EMAILS,
         subject: config.MAIL_SUBJECT,
-        html: `${config.MAIL_BODY}<p> https://drive.google.com/file/d/${fileURL}/view </p>`,
+        html: `${config.MAIL_BODY}<p> https://drive.google.com/file/d/${fileURL}/view </p>`
       };
 
       trans.sendMail(mailOp, (mailErr, info) => { // eslint-disable-line no-unused-vars
