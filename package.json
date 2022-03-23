@@ -23,7 +23,7 @@
     "fs": "0.0.1-security",
     "googleapis": "^25.0.0",
     "jsonfile": "^4.0.0",
-    "mocha": "^4.1.0",
+    "mocha": "^6.2.3",
     "mochawesome": "^3.0.2",
     "nodemailer": "^4.4.2",
     "path": "^0.12.7",
